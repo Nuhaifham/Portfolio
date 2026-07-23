@@ -18,6 +18,14 @@ const GithubIcon = ({ className = "w-5 h-5", ...props }) => (
   </svg>
 );
 
+const InstagramIcon = ({ className = "w-5 h-5", ...props }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
 
 const navLinks = [
   { name: "Home", to: "home", icon: <Home size={18} /> },
@@ -123,7 +131,6 @@ export default function Sidebar() {
               <div className="flex justify-center gap-6 mt-8">
                 <a href="https://linkedin.com/in/nuha-ifham" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors"><LinkedinIcon className="w-5 h-5" /></a>
                 <a href="https://github.com/Nuhaifham" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors"><GithubIcon className="w-5 h-5" /></a>
-                <a href="https://instagram.com/nuha_mi_" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors"><InstagramIcon className="w-5 h-5" /></a>
                 <a href="https://behance.net/nuhaifham" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors"><Compass size={20} /></a>
               </div>
             </motion.aside>
@@ -203,15 +210,6 @@ export default function Sidebar() {
               aria-label="GitHub Profile"
             >
               <GithubIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="https://instagram.com/nuha_mi_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full border border-gray-100 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-white hover:bg-[var(--color-primary)] hover:border-transparent transition-all duration-300 shadow-sm"
-              aria-label="Instagram Profile"
-            >
-              <InstagramIcon className="w-4 h-4" />
             </a>
             <a
               href="https://behance.net/nuhaifham"

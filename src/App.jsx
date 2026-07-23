@@ -189,8 +189,8 @@ const projectsData = [
     title: "Smart Campus",
     description:
       "AI-powered academic assistance and student productivity platform. Supports opportunity discovery, schedule optimization, and educational AI features.",
-    tags: ["React", "Node.js", "MongoDB", "OpenAI API"],
-    category: "Web App",
+    tags: ["Figma", "Wireframing", "Design Thinking", "Problem Solving"],
+    category: "UI/UX Design",
     link: "https://github.com/nuhaifham/smart-campus",
     image: "/Images/smartcampus.jpg",
   },
@@ -1001,7 +1001,6 @@ export default function App() {
               <div className="flex gap-4">
                 <a href="https://linkedin.com/in/nuha-ifham" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"><LinkedInIcon className="w-5 h-5" /></a>
                 <a href="https://github.com/Nuhaifham" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"><GitHubIcon className="w-5 h-5" /></a>
-                <a href="https://instagram.com/nuha_mi_" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"><InstagramIcon className="w-5 h-5" /></a>
               </div>
             </div>
           </footer>
