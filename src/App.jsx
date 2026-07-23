@@ -283,7 +283,7 @@ export default function App() {
       setSubmitStatus("success");
 
       // Prefill and open client email application
-      const mailtoUrl = `mailto:nuhaifham@gmail.com?subject=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`)}`;
+      const mailtoUrl = `mailto:nuhaifham2001@gmail.com?subject=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`)}`;
       window.location.href = mailtoUrl;
 
       // Reset form after success state
@@ -739,7 +739,7 @@ export default function App() {
                   </div>
                   <h5 className="font-extrabold text-sm text-gray-900 dark:text-white uppercase mb-1">Email</h5>
                   <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold hover:text-[var(--color-primary)]">
-                    <a href="mailto:nuhaifham@gmail.com">nuhaifham@gmail.com</a>
+                    <a href="mailto:nuhaifham2001@gmail.com">nuhaifham2001@gmail.com</a>
                   </p>
                 </div>
 
