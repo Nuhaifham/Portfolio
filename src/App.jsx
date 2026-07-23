@@ -990,6 +990,21 @@ export default function App() {
               </div>
             </div>
           </Element>
+
+          {/* FOOTER */}
+          <footer className="py-10 border-t border-gray-100 dark:border-gray-800/50 bg-white/10 dark:bg-black/10 text-center relative z-10">
+            <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="font-signature text-3xl text-[var(--color-primary)] font-medium">Nuha Ifham</span>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold">
+                &copy; 2026 Nuha Ifham. All rights reserved.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://linkedin.com/in/nuha-ifham" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"><LinkedInIcon className="w-5 h-5" /></a>
+                <a href="https://github.com/Nuhaifham" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"><GitHubIcon className="w-5 h-5" /></a>
+                <a href="https://instagram.com/nuha_mi_" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"><InstagramIcon className="w-5 h-5" /></a>
+              </div>
+            </div>
+          </footer>
         </main>
       </div>
 
