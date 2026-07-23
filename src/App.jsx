@@ -126,12 +126,20 @@ const educationList = [
 // Projects data
 const projectsData = [
   {
+    title: "Smart Campus",
+    description: "AI-powered academic assistance and student productivity platform. Supports opportunity discovery, schedule optimization, and educational AI features.",
+    tags: ["React", "Node.js", "MongoDB", "OpenAI API"],
+    category: "Web App",
+    link: "https://github.com/nuhaifham/smart-campus",
+    image: "/Images/smartcampus.jpg"
+  },
+  {
     title: "Call Alerta",
     description: "First place design winner disaster management mobile application. Features real-time emergency broadcast maps, location-based SOS triggers, and crisis contacts.",
     tags: ["Figma", "React Native", "Maps API"],
     category: "Mobile",
     link: "https://www.figma.com/proto/9v6yjWBsVt5PmfHlDMkEOq/Alerta?node-id=2-1277&p=f&viewport=148%2C24%2C0.07&t=WjMRs7J0nUR3YtHp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A1277&page-id=0%3A1",
-    image: null
+    image: "/Images/alerta.jpg"
   },
   {
     title: "Eventaa",
@@ -139,7 +147,7 @@ const projectsData = [
     tags: ["Flutter", "Supabase", "Gemini AI", "Mobile"],
     category: "Mobile",
     link: "https://github.com/MohamedMusammil/Flutter_App",
-    image: null
+    image: "/Images/eventaa.jpg"
   },
   {
     title: "SEUSL Connect",
@@ -147,7 +155,7 @@ const projectsData = [
     tags: ["Figma", "UI/UX", "Bootstrap", "Azure"],
     category: "UI/UX Design",
     link: "https://www.figma.com/design/6jTmTgtUhDaGIHlA0cybDE/SEUSL-Connect?node-id=0-1&t=f4vBYHpEhnAhHIef-1",
-    image: null
+    image: "/Images/seusl_connect.jpg"
   },
   {
     title: "EcoTrack",
@@ -155,7 +163,7 @@ const projectsData = [
     tags: ["Figma", "Interaction Design", "User Research"],
     category: "UI/UX Design",
     link: "https://behance.net/nuhaifham",
-    image: null
+    image: "/Images/ecotrack.jpg"
   },
   {
     title: "CampusMate",
@@ -163,7 +171,7 @@ const projectsData = [
     tags: ["Figma", "Prototyping", "UI Design"],
     category: "UI/UX Design",
     link: "https://www.figma.com/proto/3ZLXnLzQYjQX4xWgJYwFY8/CampusMate?page-id=0%3A1&node-id=1-932&p=f&viewport=157%2C191%2C0.07&t=TGuv9NFyOI0WIrJV-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A544",
-    image: null
+    image: "/Images/campusmate.jpg"
   },
   {
     title: "Coffee Shop Website",
@@ -171,7 +179,7 @@ const projectsData = [
     tags: ["Figma", "Responsive Web Design"],
     category: "UI/UX Design",
     link: "https://www.figma.com/design/n4nbaKza0KmOpW1JirMgIa/Coffea---Free-Responsive-Coffee-Shop-Website-Template--Community-?node-id=2007-24&t=hcwHrKp3F6QWKlfy-1",
-    image: null
+    image: "/Images/coffeeshop.jpg"
   },
   {
     title: "Salon Booking System",
@@ -179,7 +187,7 @@ const projectsData = [
     tags: ["React", "Node.js", "Express", "MongoDB", "Docker"],
     category: "Web App",
     link: "https://github.com/Nuhaifham/Salon-Appointment-Booking-System",
-    image: null
+    image: "/Images/salonbooking.jpg"
   },
   {
     title: "TechDesk",
@@ -187,7 +195,7 @@ const projectsData = [
     tags: ["React", "CSS3", "JavaScript"],
     category: "Web App",
     link: "https://github.com/MohamedMusammil/Flutter_App",
-    image: null
+    image: "/Images/techdesk.jpg"
   }
 ];
 
@@ -249,6 +257,49 @@ function useTypewriter(words, speed = 100, delay = 2000) {
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
+
+  // Form States
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate sending email (1.5 seconds loading state)
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitStatus("success");
+
+      // Prefill and open client email application
+      const mailtoUrl = `mailto:nuhaifham@gmail.com?subject=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`)}`;
+      window.location.href = mailtoUrl;
+
+      // Reset form after success state
+      setFormState({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+
+      // Clear success notification after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    }, 1500);
+  };
 
   const roles = [
     "Software Developer",
@@ -711,39 +762,75 @@ export default function App() {
                     Send Me An Email
                   </h4>
 
-                  <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+                  {submitStatus === "success" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 rounded-2xl text-center text-sm font-semibold flex items-center justify-center gap-2"
+                    >
+                      <span>✓</span> Message prepared successfully! Launching email application...
+                    </motion.div>
+                  )}
+
+                  <form onSubmit={handleFormSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <input
                         type="text"
+                        name="name"
+                        value={formState.name}
+                        onChange={handleInputChange}
                         placeholder="Your Name"
                         required
-                        className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white"
+                        disabled={isSubmitting}
+                        className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white disabled:opacity-50"
                       />
                       <input
                         type="email"
+                        name="email"
+                        value={formState.email}
+                        onChange={handleInputChange}
                         placeholder="Your Email"
                         required
-                        className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white"
+                        disabled={isSubmitting}
+                        className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white disabled:opacity-50"
                       />
                     </div>
                     <input
                       type="text"
+                      name="subject"
+                      value={formState.subject}
+                      onChange={handleInputChange}
                       placeholder="Subject"
                       required
-                      className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white"
+                      disabled={isSubmitting}
+                      className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white disabled:opacity-50"
                     />
                     <textarea
                       rows={5}
+                      name="message"
+                      value={formState.message}
+                      onChange={handleInputChange}
                       placeholder="Message"
                       required
-                      className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white resize-none"
+                      disabled={isSubmitting}
+                      className="w-full bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all text-gray-900 dark:text-white resize-none disabled:opacity-50"
                     />
                     <div className="text-center pt-2">
                       <button
                         type="submit"
-                        className="px-10 py-4 bg-gradient-to-r from-[var(--color-primary)] to-purple-500 hover:from-[var(--color-primary-dark)] hover:to-purple-600 text-white rounded-full font-bold shadow-[0_4px_20px_rgba(170,59,255,0.25)] hover:shadow-[0_4px_30px_rgba(170,59,255,0.45)] transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none inline-flex items-center gap-2"
+                        disabled={isSubmitting}
+                        className="px-10 py-4 bg-gradient-to-r from-[var(--color-primary)] to-purple-500 hover:from-[var(--color-primary-dark)] hover:to-purple-600 text-white rounded-full font-bold shadow-[0_4px_20px_rgba(170,59,255,0.25)] hover:shadow-[0_4px_30px_rgba(170,59,255,0.45)] transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Send Message <Send size={16} />
+                        {isSubmitting ? (
+                          <>
+                            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message <Send size={16} />
+                          </>
+                        )}
                       </button>
                     </div>
                   </form>
