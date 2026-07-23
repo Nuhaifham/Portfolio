@@ -641,7 +641,7 @@ export default function App() {
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
                     I am currently pursuing my BICT(Hons) in Software
-                    Engineering. Over the past few years, I have successfully
+                    Technologies. Over the past few years, I have successfully
                     balanced core academic concepts with hands-on startup
                     execution, serving as the Chief Operating Officer at Zatroz.
                   </p>
