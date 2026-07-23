@@ -30,8 +30,9 @@ const InstagramIcon = ({ className = "w-5 h-5", ...props }) => (
 const navLinks = [
   { name: "Home", to: "home", icon: <Home size={18} /> },
   { name: "About", to: "about", icon: <User size={18} /> },
-  { name: "Experience", to: "experience", icon: <Briefcase size={18} /> },
+  { name: "Education", to: "experience", icon: <Briefcase size={18} /> },
   { name: "Portfolio", to: "portfolio", icon: <FolderGit size={18} /> },
+  { name: "Gallery", to: "gallery", icon: <Compass size={18} /> },
   { name: "Contact", to: "contact", icon: <Mail size={18} /> },
 ];
 

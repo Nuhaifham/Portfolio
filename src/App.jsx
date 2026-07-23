@@ -326,6 +326,7 @@ function useTypewriter(words, speed = 100, delay = 2000) {
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [activeImage, setActiveImage] = useState(null);
 
   // Form States
   const [formState, setFormState] = useState({
@@ -664,73 +665,37 @@ export default function App() {
             </div>
           </Element>
 
-          {/* EXPERIENCE & EDUCATION SECTION */}
+          {/* EDUCATION SECTION */}
           <Element
             name="experience"
             className="py-20 px-6 sm:px-12 relative border-t border-gray-100 dark:border-gray-800/50"
           >
-            <div className="max-w-5xl mx-auto">
-              <SectionHeader title="Resume" subtitle="History" />
+            <div className="max-w-4xl mx-auto">
+              <SectionHeader title="Education" subtitle="Academic Journey" alignment="center" />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {/* Column 1: Experience */}
-                <div>
-                  <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white mb-8 border-b border-gray-100 dark:border-gray-800 pb-3">
-                    Experience
-                  </h3>
-                  <div className="relative border-l border-gray-200 dark:border-gray-800 ml-4 pl-8 space-y-12">
-                    {experiences.map((exp, idx) => (
-                      <div key={idx} className="relative group">
-                        {/* Timeline point */}
-                        <div className="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-white dark:bg-[#08060d] border-4 border-[var(--color-primary)] group-hover:scale-110 transition-transform duration-300 shadow-sm" />
+              <div className="max-w-3xl mx-auto mt-12">
+                <div className="relative border-l border-gray-200 dark:border-gray-800 ml-4 pl-8 space-y-12">
+                  {educationList.map((edu, idx) => (
+                    <div key={idx} className="relative group">
+                      {/* Timeline point */}
+                      <div className="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-white dark:bg-[#08060d] border-4 border-[var(--color-primary)] group-hover:scale-110 transition-transform duration-300 shadow-sm" />
 
-                        <span className="text-xs font-extrabold text-[var(--color-primary)] uppercase tracking-wider block mb-2">
-                          {exp.period}
-                        </span>
-                        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-[var(--color-primary)] transition-colors duration-300">
-                          {exp.title}
-                        </h4>
-                        <h5 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">
-                          {exp.subtitle}
-                        </h5>
-                        <ul className="list-disc list-outside ml-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
-                          {exp.description.map((desc, dIdx) => (
-                            <li key={dIdx}>{desc}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Column 2: Education */}
-                <div>
-                  <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white mb-8 border-b border-gray-100 dark:border-gray-800 pb-3">
-                    Education
-                  </h3>
-                  <div className="relative border-l border-gray-200 dark:border-gray-800 ml-4 pl-8 space-y-12">
-                    {educationList.map((edu, idx) => (
-                      <div key={idx} className="relative group">
-                        {/* Timeline point */}
-                        <div className="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-white dark:bg-[#08060d] border-4 border-[var(--color-primary)] group-hover:scale-110 transition-transform duration-300 shadow-sm" />
-
-                        <span className="text-xs font-extrabold text-[var(--color-primary)] uppercase tracking-wider block mb-2">
-                          {edu.period}
-                        </span>
-                        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-[var(--color-primary)] transition-colors duration-300">
-                          {edu.title}
-                        </h4>
-                        <h5 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">
-                          {edu.subtitle}
-                        </h5>
-                        <ul className="list-disc list-outside ml-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
-                          {edu.description.map((desc, dIdx) => (
-                            <li key={dIdx}>{desc}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
+                      <span className="text-xs font-extrabold text-[var(--color-primary)] uppercase tracking-wider block mb-2">
+                        {edu.period}
+                      </span>
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                        {edu.title}
+                      </h4>
+                      <h5 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">
+                        {edu.subtitle}
+                      </h5>
+                      <ul className="list-disc list-outside ml-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                        {edu.description.map((desc, dIdx) => (
+                          <li key={dIdx}>{desc}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -825,6 +790,58 @@ export default function App() {
                   ))}
                 </AnimatePresence>
               </motion.div>
+            </div>
+          </Element>
+
+          {/* GALLERY SECTION */}
+          <Element
+            name="gallery"
+            className="py-20 px-6 sm:px-12 relative border-t border-gray-100 dark:border-gray-800/50 bg-white/20 dark:bg-black/10"
+          >
+            <div className="max-w-5xl mx-auto">
+              <SectionHeader title="Gallery" subtitle="Moments & Competitions" alignment="center" />
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                {[
+                  {
+                    src: "/Images/gallery1.jpg",
+                    title: "Hack Like A Girl 3.0",
+                    desc: "Top 10 Finalist certificate celebration at TRACE Expert City."
+                  },
+                  {
+                    src: "/Images/gallery2.jpg",
+                    title: "Prototype Design Sprint",
+                    desc: "Collaborative design sessions during national designathons."
+                  },
+                  {
+                    src: "/Images/gallery3.jpg",
+                    title: "Presentation Stage",
+                    desc: "Pitching user journey mapping and student product layouts."
+                  }
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -6 }}
+                    onClick={() => setActiveImage(item.src)}
+                    className="group bg-white/40 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl border border-white/60 dark:border-gray-700/60 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="relative overflow-hidden aspect-[3/2]">
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span className="text-white text-xs font-bold uppercase tracking-wider">Zoom Moment +</span>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{item.title}</h4>
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-450 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </Element>
 
@@ -1007,7 +1024,7 @@ export default function App() {
         </main>
       </div>
 
-      {/* Smooth Scroll back to top */}
+      {/* Smooth Scroll back to top & Lightbox */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.div
@@ -1023,6 +1040,34 @@ export default function App() {
             >
               <ArrowUp size={20} />
             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Lightbox Overlay */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveImage(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+          >
+            <button
+              onClick={() => setActiveImage(null)}
+              className="absolute top-6 right-6 text-white hover:text-[var(--color-primary)] transition-colors p-2 text-2xl font-bold bg-white/10 rounded-full w-12 h-12 flex items-center justify-center"
+            >
+              ✕
+            </button>
+            <motion.img
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              src={activeImage}
+              alt="Competition Moment"
+              className="max-w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl select-none"
+            />
           </motion.div>
         )}
       </AnimatePresence>
