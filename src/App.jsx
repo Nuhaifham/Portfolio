@@ -842,26 +842,28 @@ export default function App() {
                       {
                         title: "SLASSCOM - Hack Like A Girl 3.0",
                         images: [
-                          { src: "/Images/slasscom1.jpg", span: "col-span-1 h-36 sm:h-44" },
-                          { src: "/Images/slasscom2.jpg", span: "col-span-1 h-36 sm:h-44" },
-                          { src: "/Images/slasscom3.jpg", span: "col-span-2 h-44 sm:h-56" },
+                          { src: "/Images/slasscom1.jpeg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/slasscom2.jpeg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/slasscom3.jpeg", span: "col-span-2 h-44 sm:h-56" },
+                          { src: "/Images/slasscom4.jpg", span: "col-span-2 h-44 sm:h-56" },
                           { src: "/Images/gallery2.jpeg", span: "col-span-1 h-36 sm:h-44" }
                         ]
                       },
                       {
                         title: "SLIIT Designathon",
                         images: [
-                          { src: "/Images/sliit1.jpg", span: "col-span-1 h-36 sm:h-44" },
-                          { src: "/Images/sliit2.jpg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/sliit1.jpeg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/sliit2.jpeg", span: "col-span-1 h-36 sm:h-44" },
                           { src: "/Images/sliit3.jpg", span: "col-span-2 h-44 sm:h-56" }
                         ]
                       },
                       {
                         title: "South Eastern Designathon",
                         images: [
-                          { src: "/Images/seusl1.jpg", span: "col-span-2 h-44 sm:h-56" },
-                          { src: "/Images/seusl2.jpg", span: "col-span-1 h-36 sm:h-44" },
-                          { src: "/Images/seusl3.jpg", span: "col-span-1 h-36 sm:h-44" }
+                          { src: "/Images/seusl1.jpeg", span: "col-span-2 h-44 sm:h-56" },
+                          { src: "/Images/seusl2.jpeg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/seusl3.jpeg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/seusl4.jpeg", span: "col-span-1 h-36 sm:h-44" }
                         ]
                       }
                     ][idx];
