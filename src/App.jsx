@@ -500,7 +500,7 @@ export default function App() {
                 <div>
                   <a
                     href="/Nuha_Resume.pdf"
-                    target="_blank"
+                    download="Nuha_Resume.pdf"
                     rel="noopener noreferrer"
                     className="inline-block px-8 py-4 bg-[var(--color-primary)] text-white font-bold rounded-full hover:bg-[var(--color-primary-dark)] transition-all shadow-lg shadow-[var(--color-primary)]/30 hover:shadow-[var(--color-primary)]/50 transform hover:-translate-y-1 cursor-pointer select-none"
                   >
