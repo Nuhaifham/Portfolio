@@ -846,6 +846,7 @@ export default function App() {
                           { src: "/Images/slasscom2.jpeg", span: "col-span-1 h-36 sm:h-44" },
                           { src: "/Images/slasscom3.jpeg", span: "col-span-2 h-44 sm:h-56" },
                           { src: "/Images/slasscom4.jpg", span: "col-span-2 h-44 sm:h-56" },
+                          { src: "/Images/gallery2.jpeg", span: "col-span-1 h-36 sm:h-44" },
                           { src: "/Images/gallery2.jpeg", span: "col-span-1 h-36 sm:h-44" }
                         ]
                       },
