@@ -191,7 +191,7 @@ const projectsData = [
       "AI-powered academic assistance and student productivity platform. Supports opportunity discovery, schedule optimization, and educational AI features.",
     tags: ["Figma", "Wireframing", "Design Thinking", "Problem Solving"],
     category: "UI/UX Design",
-    link: "https://github.com/nuhaifham/smart-campus",
+    link: "https://www.figma.com/design/EFVI50Xxa5QXBBmlXWWDDk/Smart-Campus?node-id=1-37&t=r3ABvJ4YwkCwTDoz-1",
     image: "/Images/smartcampus.jpg",
   },
   {
@@ -327,6 +327,8 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeImage, setActiveImage] = useState(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [visibleCounts, setVisibleCounts] = useState([3, 3, 3]);
 
   // Form States
   const [formState, setFormState] = useState({
@@ -796,51 +798,153 @@ export default function App() {
           {/* GALLERY SECTION */}
           <Element
             name="gallery"
-            className="py-20 px-6 sm:px-12 relative border-t border-gray-100 dark:border-gray-800/50 bg-white/20 dark:bg-black/10"
+            className="py-20 px-6 sm:px-12 relative border-t border-gray-100 dark:border-gray-800/50 bg-white/20 dark:bg-black/10 overflow-hidden"
           >
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto relative">
               <SectionHeader title="Gallery" subtitle="Moments & Competitions" alignment="center" />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                {[
-                  {
-                    src: "/Images/gallery1.jpg",
-                    title: "Hack Like A Girl 3.0",
-                    desc: "Top 10 Finalist certificate celebration at TRACE Expert City."
-                  },
-                  {
-                    src: "/Images/gallery2.jpg",
-                    title: "Prototype Design Sprint",
-                    desc: "Collaborative design sessions during national designathons."
-                  },
-                  {
-                    src: "/Images/gallery3.jpg",
-                    title: "Presentation Stage",
-                    desc: "Pitching user journey mapping and student product layouts."
-                  }
-                ].map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ y: -6 }}
-                    onClick={() => setActiveImage(item.src)}
-                    className="group bg-white/40 dark:bg-gray-800/40 backdrop-blur-xl rounded-3xl border border-white/60 dark:border-gray-700/60 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+              {/* Slider Categories Navigation */}
+              <div className="flex justify-center gap-4 mb-10 mt-8">
+                {["SLASSCOM", "SLIIT", "South Eastern Designathon"].map((cat, idx) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setActiveCardIndex(idx);
+                    }}
+                    className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer select-none border ${
+                      activeCardIndex === idx
+                        ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/20 scale-105"
+                        : "bg-white/50 dark:bg-gray-800/50 border-white/60 dark:border-gray-850 text-gray-500 dark:text-gray-400 hover:text-[var(--color-primary)] hover:border-[var(--color-primary)]/40"
+                    }`}
                   >
-                    <div className="relative overflow-hidden aspect-[3/2]">
-                      <img
-                        src={item.src}
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <span className="text-white text-xs font-bold uppercase tracking-wider">Zoom Moment +</span>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{item.title}</h4>
-                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-450 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </motion.div>
+                    {cat}
+                  </button>
                 ))}
+              </div>
+
+              {/* Carousel Container */}
+              <div className="relative w-full flex items-center justify-center min-h-[580px] sm:min-h-[540px]">
+                {/* Left Arrow Button */}
+                <button
+                  onClick={() => setActiveCardIndex((prev) => (prev > 0 ? prev - 1 : 2))}
+                  className="absolute left-2 lg:-left-6 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-md flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-[var(--color-primary)] cursor-pointer select-none hover:scale-105 active:scale-95 transition-all"
+                >
+                  &larr;
+                </button>
+
+                {/* Cards Deck Wrapper */}
+                <div className="relative w-full max-w-4xl h-full flex justify-center items-center py-6 px-4">
+                  {[0, 1, 2].map((idx) => {
+                    const offset = idx - activeCardIndex;
+                    const isActive = idx === activeCardIndex;
+                    
+                    const categoryData = [
+                      {
+                        title: "SLASSCOM - Hack Like A Girl 3.0",
+                        images: [
+                          { src: "/Images/slasscom1.jpg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/slasscom2.jpg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/slasscom3.jpg", span: "col-span-2 h-44 sm:h-56" },
+                          { src: "/Images/gallery2.jpeg", span: "col-span-1 h-36 sm:h-44" }
+                        ]
+                      },
+                      {
+                        title: "SLIIT Designathon",
+                        images: [
+                          { src: "/Images/sliit1.jpg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/sliit2.jpg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/sliit3.jpg", span: "col-span-2 h-44 sm:h-56" }
+                        ]
+                      },
+                      {
+                        title: "South Eastern Designathon",
+                        images: [
+                          { src: "/Images/seusl1.jpg", span: "col-span-2 h-44 sm:h-56" },
+                          { src: "/Images/seusl2.jpg", span: "col-span-1 h-36 sm:h-44" },
+                          { src: "/Images/seusl3.jpg", span: "col-span-1 h-36 sm:h-44" }
+                        ]
+                      }
+                    ][idx];
+
+                    return (
+                      <motion.div
+                        key={idx}
+                        style={{ originY: 0.5 }}
+                        animate={{
+                          x: offset * 340,
+                          scale: isActive ? 1 : 0.82,
+                          opacity: isActive ? 1 : 0.15,
+                          zIndex: isActive ? 10 : 1,
+                        }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        className={`absolute w-full bg-white dark:bg-[#110e1b] border border-gray-150 dark:border-gray-800/80 rounded-[2.5rem] shadow-xl p-5 sm:p-8 flex flex-col transition-shadow duration-300 ${
+                          isActive ? "relative shadow-2xl cursor-default" : "cursor-pointer pointer-events-none"
+                        }`}
+                        onClick={() => {
+                          if (!isActive) setActiveCardIndex(idx);
+                        }}
+                      >
+                        <h4 className="text-lg sm:text-xl font-bold text-gray-950 dark:text-white mb-6 border-b border-gray-100 dark:border-gray-800 pb-3 flex items-center justify-between">
+                          <span>{categoryData.title}</span>
+                          <span className="text-[10px] bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-3 py-1 rounded-full uppercase tracking-wider font-semibold">
+                            Card {idx + 1}
+                          </span>
+                        </h4>
+
+                        {/* Masonry Grid inside the card */}
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                          {categoryData.images
+                            .slice(0, visibleCounts[idx])
+                            .map((img, i) => (
+                              <motion.div
+                                key={i}
+                                layout
+                                whileHover={{ scale: 1.02 }}
+                                onClick={() => isActive && setActiveImage(img.src)}
+                                className={`relative rounded-2xl overflow-hidden group shadow-sm cursor-zoom-in ${img.span}`}
+                              >
+                                <img
+                                  src={img.src}
+                                  alt="Competition moment"
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none"
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                  <span className="text-white text-xs font-bold uppercase tracking-widest">Zoom +</span>
+                                </div>
+                              </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Load More Button */}
+                        {visibleCounts[idx] < categoryData.images.length && (
+                          <div className="text-center mt-6">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setVisibleCounts((prev) => {
+                                  const next = [...prev];
+                                  next[idx] += 2;
+                                  return next;
+                                });
+                              }}
+                              className="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-850 dark:text-white text-xs sm:text-sm font-semibold rounded-full shadow-sm cursor-pointer select-none transition-colors duration-200"
+                            >
+                              Load More
+                            </button>
+                          </div>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Right Arrow Button */}
+                <button
+                  onClick={() => setActiveCardIndex((prev) => (prev < 2 ? prev + 1 : 0))}
+                  className="absolute right-2 lg:-right-6 z-20 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-md flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-[var(--color-primary)] cursor-pointer select-none hover:scale-105 active:scale-95 transition-all"
+                >
+                  &rarr;
+                </button>
               </div>
             </div>
           </Element>
