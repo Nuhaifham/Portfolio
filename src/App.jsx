@@ -348,29 +348,44 @@ export default function App() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    // Simulate sending email (1.5 seconds loading state)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-
-      // Prefill and open client email application
-      const mailtoUrl = `mailto:nuhaifham2001@gmail.com?subject=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`)}`;
-      window.location.href = mailtoUrl;
-
-      // Reset form after success state
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    fetch("https://formsubmit.co/ajax/nuhaifham2001@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: formState.name,
+        email: formState.email,
+        subject: formState.subject,
+        message: formState.message
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          setSubmitStatus("success");
+          setFormState({
+            name: "",
+            email: "",
+            subject: "",
+            message: ""
+          });
+        } else {
+          setSubmitStatus("error");
+        }
+      })
+      .catch(() => {
+        setSubmitStatus("error");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+        // Clear status after 6 seconds
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 6000);
       });
-
-      // Clear success notification after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus(null);
-      }, 5000);
-    }, 1500);
   };
 
   const roles = [
@@ -1041,10 +1056,19 @@ export default function App() {
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 rounded-2xl text-center text-sm font-semibold flex items-center justify-center gap-2"
+                      className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 rounded-2xl text-center text-sm font-semibold flex items-center justify-center gap-2"
                     >
-                      <span>✓</span> Message prepared successfully! Launching
-                      email application...
+                      <span>✓</span> Message sent successfully! I will get back to you soon.
+                    </motion.div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mb-6 p-4 bg-rose-500/10 border border-rose-500/30 text-rose-650 dark:text-rose-450 rounded-2xl text-center text-sm font-semibold flex items-center justify-center gap-2"
+                    >
+                      <span>✕</span> Connection error. Please check your network and try again.
                     </motion.div>
                   )}
 
